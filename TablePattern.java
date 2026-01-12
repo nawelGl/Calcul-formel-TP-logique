@@ -9,7 +9,7 @@ public class TablePattern {
             int k=1 << c;   // 2^c   
             for (int r=0; r< rows; r++){
                
-                table[r][c]=(r/k)%2;
+                table[r][c]=(r/k)%2; // la valuer de case 
         } 
     }return table;
 }
@@ -23,9 +23,10 @@ public class TablePattern {
         }
     }
 
-
+/* 
     public static void main(String[] args) {
         int[][] t = buildTable(4);
         print(t);
     }
+ */
 }
