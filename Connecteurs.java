@@ -1,6 +1,18 @@
 import java.util.List;
+import java.util.HashMap;
 
 public class Connecteurs {
+
+    public static final HashMap<ConnecteursEnum, String> mapConnecteurs = new HashMap<>();
+
+    public static void initialiseSymbols(){
+        // Définition des symboles de connecteurs
+        mapConnecteurs.put(ConnecteursEnum.NEGATION, "no");
+        mapConnecteurs.put(ConnecteursEnum.OR, "or");
+        mapConnecteurs.put(ConnecteursEnum.AND, "^");
+        mapConnecteurs.put(ConnecteursEnum.EQUIVAUT, "->");
+        mapConnecteurs.put(ConnecteursEnum.IMPLIQUE, "<->");
+    }
 
     public int negation(int a){
         if(a==1) {return 0;} else {return 1;}
