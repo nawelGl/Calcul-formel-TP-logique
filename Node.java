@@ -23,23 +23,28 @@ public class Node {
         
         //on regard si le noeud de gauche et de droite sont nuls : alors c'est une variable
         if (this.left == null && this.right == null) {
+
+            //si on a une valeur vrai (1) ou faux (0) dans l'expression, on la value comme tel
             if (value.equals("1")) return 1;
             if (value.equals("0")) return 0;
+
+            //sinon on regard dans la map quelle est la valuation de la variable
             if (variables.containsKey(value)) {
                 return variables.get(value);
             } else {
-                throw new RuntimeException("Erreur : La variable '" + value + "' n'a pas de valeur définie !");
+                System.err.println("ERREUR : Impossible de trouver la valeur de : " + value);
+                System.exit(1);
+                return 0;
             }
         }
 
-        // --- 2. CAS RÉCURSIF : C'est un opérateur ---
         
-        // On calcule d'abord la valeur des enfants (Récursivité)
-        // Note : Pour la Négation (!), on suppose que la valeur est à gauche (left)
+        //on récupère d'abord la valuation des variables enfants
+        //note : pour la négation, on supose que la variable est a gauche
         int valLeft = (left != null) ? left.eval(variables) : 0;
         int valRight = (right != null) ? right.eval(variables) : 0;
 
-        // On applique l'opération correspondante
+        //on applique l'opérateur trouvé
         switch (value) {
             case Connecteurs.NOT:      
                 return Connecteurs.negation(valLeft);
@@ -57,7 +62,9 @@ public class Node {
                 return Connecteurs.equivaut(valLeft, valRight);
             
             default: 
-                throw new RuntimeException("Opérateur inconnu : " + value);
+                System.err.println("ERREUR : Opérateur non reconnu : " + value);
+                System.exit(1);
+                return 0;
         }
     }
 }

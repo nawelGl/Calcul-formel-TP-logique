@@ -6,7 +6,7 @@ public class Parser {
     }
 
     private static Node parseExpression(String expr) {
-        // 1. Enlever les parenthèses inutiles autour ((A&B)) -> A&B
+        //on enleve les parentheses
         while (expr.startsWith("(") && expr.endsWith(")")) {
             // Attention : il faut vérifier qu'elles se correspondent vraiment (gestion
             // simple ici)
